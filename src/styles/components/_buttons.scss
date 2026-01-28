@@ -1,0 +1,32 @@
+@use '../variables' as *;
+@use '../_functions.scss' as *;
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: px(10);
+  padding: px(20) px(40);
+  border-radius: px(16);
+  border: 1px solid;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &--black {
+    border-color: $black;
+    &:hover {
+      background: $black;
+    }
+  }
+
+  &--white {
+    border-color: $total-white;
+    &:hover {
+      background: $total-white;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+  }
+}

@@ -1,11 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Button from '@/components/ui/Button.vue';
+</script>
 
 <template>
   <div id="app">
-    <h1>Hello</h1>
+    <h1>UI Kit</h1>
+    <Button href="/news" outline="black">Test Button</Button>
   </div>
 </template>
 
-<style lang="scss">
-@use '@/styles/main.scss';
-</style>
+<!-- стили НЕ нужны, они уже в main.ts -->

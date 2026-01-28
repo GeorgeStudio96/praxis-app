@@ -1,0 +1,21 @@
+@use '../functions' as *;
+
+.icon-container {
+  display: inline-flex;
+  flex-shrink: 0;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &--8 {
+    width: px(8);
+    height: px(8);
+  }
+  &--24 {
+    width: px(24);
+    height: px(24);
+  }
+}
