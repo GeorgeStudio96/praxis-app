@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>praxis-globe</title>
+  </head>
+  <body>
+    <style>
+      :root {
+        font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        font-weight: 400;
+
+        color-scheme: light dark;
+        color: rgba(255, 255, 255, 0.87);
+        background-color: #ffffff;
+
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+        justify-content: center;
+        min-width: 320px;
+        min-height: 100vh;
+        padding: 100px;
+        gap: 40px;
+      }
+
+      transparent-video {
+        position: relative;
+        width: 960px;
+        height: 540px;
+      }
+    </style>
+
+    <transparent-video
+      src="globe.webm"
+      mask-src="globe-mask.webm"
+      fallback-src="globe.webm"
+      autoplay
+      muted
+      loop>
+    </transparent-video>  
+
+    <transparent-video
+      src="plane_praxis_ultra.mp4"
+      mask-src="plane_praxis_ultra_mask.mp4"
+      fallback-src="plane_praxis_ultra.mp4"
+      autoplay
+      muted
+      loop
+      debug>
+    </transparent-video>  
+
+    <script type="module" src="./transparent-video.js"></script>
+
+    <script>
+      document.querySelectorAll('transparent-video').forEach(v => {
+        v.addEventListener('click', e => {
+          v.paused ? v.play() : v.pause()
+        })
+      })
+    </script>
+  </body>
+</html>
