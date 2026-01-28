@@ -1,0 +1,54 @@
+@use './variables' as *;
+
+// Colors Classes
+
+// Text Colors
+.color-black {
+  color: $black;
+}
+.color-green {
+  color: $green;
+}
+.color-light-green {
+  color: $light-green;
+}
+.color-dark-purple {
+  color: $dark-purple;
+}
+.color-gray {
+  color: $gray;
+}
+.color-white {
+  color: $total-white;
+}
+.color-total-black {
+  color: $total-black;
+}
+// Background Colors
+.bg-black {
+  background-color: $black;
+}
+.bg-green {
+  background-color: $green;
+}
+.bg-light-green {
+  background-color: $light-green;
+}
+.bg-dark-purple {
+  background-color: $dark-purple;
+}
+.bg-gray {
+  background-color: $gray;
+}
+.bg-white {
+  background-color: $total-white;
+}
+.bg-total-black {
+  background-color: $total-black;
+}
+
+// Layout
+
+.overflow-hidden {
+  overflow: hidden;
+}
