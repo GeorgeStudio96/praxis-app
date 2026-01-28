@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+// Mobile: до 375px
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+// Table: от 376px до 1280px
+@mixin tablet {
+  @media (min-width: calc($mobile + 1px)) and (max-width: $tablet) {
+    @content;
+  }
+}
+
+// Desktop: от 1280px
+@mixin desktop {
+  @media (min-width: $tablet) {
+    @content;
+  }
+}
+
+// Large Desktop: от 1920px
+@mixin desktop-large {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+
+// Ultra Large: от 2560px
+@mixin large {
+  @media (min-width: $large) {
+    @content;
+  }
+}

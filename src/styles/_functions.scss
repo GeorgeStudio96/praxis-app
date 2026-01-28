@@ -1,0 +1,7 @@
+@function px($value) {
+  @return calc($value / 19.2) * 1rem;
+}
+
+@function pxMob($value) {
+  @return calc($value / 3.75) * 1rem;
+}
