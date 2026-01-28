@@ -23,7 +23,7 @@ withDefaults(defineProps<Props>(), {
     class="btn"
     :class="`btn--${outline}`"
   >
-    <span class="text-label">
+    <span class="text-label uppercase">
       <slot />
     </span>
     <IconContainer :size="24">
@@ -32,7 +32,7 @@ withDefaults(defineProps<Props>(), {
   </a>
 
   <button v-else class="btn" :class="`btn--${outline}`">
-    <span class="text-label">
+    <span class="text-label uppercase">
       <slot />
     </span>
 

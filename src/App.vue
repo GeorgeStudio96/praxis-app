@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button.vue';
 <template>
   <div id="app">
     <h1>UI Kit</h1>
-    <Button href="/news" outline="black">Test Button</Button>
+    <Button href="/news" outline="black">посмотреть все новости</Button>
   </div>
 </template>
 

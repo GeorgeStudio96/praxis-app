@@ -1,6 +1,7 @@
+@use 'breakpoints' as *;
 @use 'variables';
 @use 'functions' as *;
-@use 'mixins';
+@use 'mixins' as *;
 @use 'fonts';
 @use 'base';
 @use 'typography';
@@ -8,16 +9,12 @@
 
 html {
   font-size: 1vw;
-}
 
-@media (min-width: 1920px) {
-  html {
+  @include desktop {
     font-size: 19.2px;
   }
-}
 
-@media (min-width: 2560px) {
-  html {
+  @include large {
     font-size: 25.6px;
   }
 }

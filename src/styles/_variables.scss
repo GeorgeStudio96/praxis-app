@@ -1,3 +1,6 @@
+@use './functions' as *;
+@use './mixins' as *;
+
 // Brand Colors
 $green: #1cac78;
 $light-green: #21d795;
@@ -7,8 +10,21 @@ $gray: #f6f6f6;
 $total-white: #ffffff;
 $total-black: #000000;
 
-// Breakpoints
-$mobile: 375px;
-$tablet: 1280px;
-$desktop: 1920px;
-$large: 2560px;
+// Spacings
+:root {
+  --space-4: #{px(4)};
+  --space-8: #{px(8)};
+  --space-20: #{px(20)};
+  --space-40: #{px(40)};
+
+  @include mobile {
+    --space-20: #{pxMob(18)};
+  }
+}
+
+// Radiuses
+:root {
+  --radius-8: #{px(8)};
+}
+
+// Shadows
