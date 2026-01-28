@@ -1,6 +1,6 @@
 @use '../functions' as *;
 
-.icon-container {
+@mixin icon-base {
   display: inline-flex;
   flex-shrink: 0;
 
@@ -9,13 +9,76 @@
     height: 100%;
     display: block;
   }
+}
 
-  &--8 {
-    width: px(8);
-    height: px(8);
-  }
-  &--24 {
-    width: px(24);
-    height: px(24);
-  }
+.icon-container-6 {
+  @include icon-base;
+  width: px(6);
+  height: px(6);
+}
+
+.icon-container-8 {
+  @include icon-base;
+  width: px(8);
+  height: px(8);
+}
+
+.icon-container-10 {
+  @include icon-base;
+  width: px(10);
+  height: px(10);
+}
+
+.icon-container-12 {
+  @include icon-base;
+  width: px(12);
+  height: px(12);
+}
+
+.icon-container-16 {
+  @include icon-base;
+  width: px(16);
+  height: px(16);
+}
+
+.icon-container-20 {
+  @include icon-base;
+  width: px(20);
+  height: px(20);
+}
+
+.icon-container-24 {
+  @include icon-base;
+  width: px(24);
+  height: px(24);
+}
+
+.icon-container-32 {
+  @include icon-base;
+  width: px(32);
+  height: px(32);
+}
+
+.icon-container-40 {
+  @include icon-base;
+  width: px(40);
+  height: px(40);
+}
+
+.icon-container-48 {
+  @include icon-base;
+  width: px(48);
+  height: px(48);
+}
+
+.icon-container-56 {
+  @include icon-base;
+  width: px(56);
+  height: px(56);
+}
+
+.icon-container-64 {
+  @include icon-base;
+  width: px(64);
+  height: px(64);
 }

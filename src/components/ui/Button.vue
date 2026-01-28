@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ArrowRight from '@/assets/icons/ArrowRight.vue';
+import IconContainer from '@/components/ui/IconContainer.vue';
 
 interface Props {
   type?: 'internal' | 'external';

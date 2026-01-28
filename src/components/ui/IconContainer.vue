@@ -9,7 +9,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="icon-container" :class="`icon-container--${size}`">
+  <div :class="`icon-container-${size}`">
     <slot />
   </div>
 </template>
