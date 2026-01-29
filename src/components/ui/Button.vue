@@ -62,7 +62,7 @@ const iconStyle = computed(() => {
     <span v-if="hasText" class="text-label uppercase">
       <slot />
     </span>
-    <IconContainer v-if="showIcon" :size="24" :style="iconStyle" class="btn__icon">
+    <IconContainer v-if="showIcon" :size="24" :style="iconStyle" class="btn-icon">
       <component :is="iconComponent" />
     </IconContainer>
   </a>
@@ -71,7 +71,7 @@ const iconStyle = computed(() => {
     <span v-if="hasText" class="text-label uppercase">
       <slot />
     </span>
-    <IconContainer v-if="showIcon" :size="24" :style="iconStyle" class="btn__icon">
+    <IconContainer v-if="showIcon" :size="24" :style="iconStyle" class="btn-icon">
       <component :is="iconComponent" />
     </IconContainer>
   </button>
