@@ -2,6 +2,14 @@
 import Button from '@/components/ui/Button.vue';
 import ArrowTop from '@/assets/icons/ArrowTop.vue';
 import IconPlus from '@/assets/icons/IconPlus.vue';
+import NavigationButton from '@/components/ui/NavigationButton.vue';
+
+function swiperPrev() {
+  console.log('swiper prev clicked');
+}
+function swiperNext() {
+  console.log('swiper next clicked');
+}
 </script>
 
 <template>
@@ -63,4 +71,6 @@ import IconPlus from '@/assets/icons/IconPlus.vue';
       :show-text="false"
     />
   </div>
+  <NavigationButton direction="left" @click="swiperPrev" />
+  <NavigationButton @click="swiperNext" />
 </template>
