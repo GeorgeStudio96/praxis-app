@@ -7,6 +7,8 @@ import NavigationButton from '@/components/ui/NavigationButton.vue';
 import Header from '@/components/layout/Header.vue';
 import HeroSection from '@/components/sections/HeroSection.vue';
 import AboutSection from '@/components/sections/AboutSection.vue';
+import CompanyCard from '@/components/ui/CompanyCard.vue';
+import SliderCard from '@/components/ui/SliderCard.vue';
 
 const lenisOptions = {
   duration: 1.2,
@@ -92,8 +94,20 @@ function swiperNext() {
 
       <!-- Main Landing -->
 
-      <div>
-        <HeroSection />
+      <div class="sections-wrapper">
+        <div class="hero-wrapper">
+          <HeroSection />
+
+          <div class="sticky-elements">
+            <SliderCard
+              label="ИННОВАЦИИ"
+              title="Управление корпоративной печатью"
+              description="Централизация печати в организациях с помощью комплексного программного решения"
+              class="slider-card--sticky"
+            />
+            <CompanyCard href="https://praxis.company" company="PRAXIS" class="company-card--sticky" />
+          </div>
+        </div>
         <!-- <AboutSection /> -->
       </div>
     </div>
