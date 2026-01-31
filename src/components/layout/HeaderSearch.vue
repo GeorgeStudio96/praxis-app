@@ -8,14 +8,14 @@ const searchQuery = ref('');
 
 <template>
   <div class="header-search">
-    <IconContainer :size="24">
-      <IconSearch />
-    </IconContainer>
     <input
       v-model="searchQuery"
       type="text"
       class="header-search__input text-label"
       placeholder="ПОИСК"
     />
+    <IconContainer :size="24">
+      <IconSearch />
+    </IconContainer>
   </div>
 </template>
