@@ -83,6 +83,12 @@
   height: px(64);
 }
 
+.icon-container-88 {
+  @include icon-base;
+  width: px(88);
+  height: px(88);
+}
+
 .icon-container-120 {
   @include icon-base;
   width: px(120);
