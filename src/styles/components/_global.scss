@@ -1,0 +1,189 @@
+@use '../functions' as *;
+@use '../variables' as *;
+
+// Header
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: var(--space-40) var(--space-40) var(--space-20);
+  display: flex;
+  justify-content: space-between;
+  z-index: 999;
+}
+
+.header-nav {
+  position: relative;
+  height: px(88);
+  display: flex;
+  align-items: center;
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: px(43);
+    padding: 0 var(--space-40);
+    flex: 1;
+  }
+}
+
+.header-divider {
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.language-switcher {
+  padding: var(--space-36) var(--space-40);
+  display: flex;
+  gap: px(20);
+
+  &__btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: px(14);
+    color: rgba(0, 0, 0, 0.4);
+    transition: color 0.3s;
+
+    &--active {
+      color: #1cac78;
+    }
+
+    &:hover {
+      color: #1cac78;
+    }
+  }
+}
+
+.header-menu {
+  position: relative;
+  width: px(88);
+  height: px(88);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.logo {
+  width: px(120);
+}
+
+.header-search {
+  width: px(272);
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  padding: var(--space-20) var(--space-30);
+  background: $total-white;
+  border-radius: var(--radius-16);
+  backdrop-filter: blur(25px);
+
+  &__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: $black;
+    font-family: inherit;
+
+    &::placeholder {
+      color: rgba($black, 0.4);
+    }
+  }
+}
+
+// Hero Animations
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.hero-ellipse {
+  position: absolute;
+  filter: blur(500px);
+
+  &--purple {
+    width: 1229px;
+    height: 1229px;
+    border-radius: 1229px;
+    background: #7a68ed;
+    left: -1194px;
+    top: -494px;
+  }
+
+  &--green {
+    width: 739px;
+    height: 732px;
+    border-radius: 739px;
+    background: #1cac78;
+    right: -500px;
+    top: 735px;
+  }
+}
+
+.hero-video {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: px(1400);
+
+  :deep(canvas) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
