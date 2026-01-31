@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ScrollDown from '@/components/ui/ScrollDown.vue';
+
 // import { onMounted, onBeforeUnmount, ref } from 'vue';
 // import gsap from 'gsap';
 // import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -70,5 +72,7 @@
     <!-- <div class="hero-video">
       <div ref="videoContainerRef" class="video-container"></div>
     </div> -->
+
+    <ScrollDown class="scroll-down" />
   </section>
 </template>
