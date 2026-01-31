@@ -15,10 +15,27 @@ $total-black: #000000;
   --space-4: #{px(4)};
   --space-8: #{px(8)};
   --space-10: #{px(10)};
+  --space-12: #{px(12)};
+  --space-14: #{px(14)};
+  --space-16: #{px(16)};
+  --space-18: #{px(18)};
   --space-20: #{px(20)};
+  --space-24: #{px(24)};
+  --space-28: #{px(28)};
   --space-30: #{px(30)};
+  --space-32: #{px(32)};
   --space-36: #{px(36)};
   --space-40: #{px(40)};
+  --space-44: #{px(44)};
+  --space-48: #{px(48)};
+  --space-52: #{px(52)};
+  --space-56: #{px(56)};
+  --space-60: #{px(60)};
+  --space-64: #{px(64)};
+  --space-68: #{px(68)};
+  --space-72: #{px(72)};
+  --space-76: #{px(76)};
+  --space-80: #{px(80)};
 
   @include mobile {
     --space-20: #{pxMob(18)};

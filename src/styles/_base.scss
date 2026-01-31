@@ -1,17 +1,18 @@
-* {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   outline: none;
-}
-
-body {
-  font-family: 'Struve', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Struve', sans-serif;
+  background-color: #eeeeee;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -41,7 +42,7 @@ a {
   text-transform: uppercase;
 }
 
-.is--hide {
+.is-hide {
   display: none;
 }
 

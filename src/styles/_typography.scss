@@ -5,6 +5,7 @@ h1 {
   font-size: px(68);
   line-height: px(76);
   letter-spacing: -0.03em;
+  font-weight: 400;
 
   @include mobile {
     font-size: pxMob(32);
@@ -16,6 +17,7 @@ h2 {
   font-size: px(40);
   line-height: px(44);
   letter-spacing: -0.03em;
+  font-weight: 400;
 
   @include mobile {
     font-size: pxMob(22);
@@ -27,6 +29,7 @@ h3 {
   font-size: px(24);
   line-height: px(28);
   letter-spacing: -0.01em;
+  font-weight: 400;
 
   @include mobile {
     font-size: pxMob(17);
@@ -38,6 +41,7 @@ h4 {
   font-size: px(19);
   line-height: px(24);
   letter-spacing: 0;
+  font-weight: 400;
 
   @include mobile {
     font-size: pxMob(14);
@@ -50,6 +54,7 @@ p {
   font-size: px(14);
   line-height: px(22);
   letter-spacing: 0.02em;
+  font-weight: 400;
 
   @include mobile {
     font-size: pxMob(12);
@@ -63,12 +68,14 @@ p {
   font-size: px(398);
   line-height: px(380);
   letter-spacing: -0.06em;
+  font-weight: 400;
 }
 
 .text-big {
   font-size: px(171);
   line-height: px(160);
   letter-spacing: -0.06em;
+  font-weight: 400;
 
   @include mobile {
     font-size: pxMob(52);
@@ -80,6 +87,7 @@ p {
   font-size: px(12);
   line-height: px(16);
   letter-spacing: 0.02em;
+  font-weight: 400;
 
   @include mobile {
     font-size: pxMob(10);
