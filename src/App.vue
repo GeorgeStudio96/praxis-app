@@ -4,7 +4,9 @@ import Button from '@/components/ui/Button.vue';
 import ArrowTop from '@/assets/icons/ArrowTop.vue';
 import IconPlus from '@/assets/icons/IconPlus.vue';
 import NavigationButton from '@/components/ui/NavigationButton.vue';
+import Header from '@/components/layout/Header.vue';
 import HeroSection from '@/components/sections/HeroSection.vue';
+import AboutSection from '@/components/sections/AboutSection.vue';
 
 const lenisOptions = {
   duration: 1.2,
@@ -24,6 +26,8 @@ function swiperNext() {
 <template>
   <VueLenis root :options="lenisOptions">
     <div class="root" id="app">
+      <Header />
+
       <div v-if="false" class="ui-kit">
         <h1>UI Kit</h1>
 
@@ -87,7 +91,11 @@ function swiperNext() {
       </div>
 
       <!-- Main Landing -->
-      <HeroSection />
+
+      <div>
+        <HeroSection />
+        <!-- <AboutSection /> -->
+      </div>
     </div>
   </VueLenis>
 </template>
