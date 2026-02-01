@@ -1,5 +1,12 @@
 @use '../functions' as *;
 @use '../variables' as *;
+@use '../mixins' as *;
+
+// Root Container
+#app {
+  position: relative;
+  z-index: 1;
+}
 
 // Header
 .header {
@@ -22,7 +29,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 90%;
     height: 100%;
     pointer-events: none;
 
@@ -156,38 +163,19 @@
   overflow: hidden;
 }
 
-.hero-ellipse {
-  position: absolute;
-  filter: blur(500px);
-
-  &--purple {
-    width: 1229px;
-    height: 1229px;
-    border-radius: 1229px;
-    background: #7a68ed;
-    left: -1194px;
-    top: -494px;
-  }
-
-  &--green {
-    width: 739px;
-    height: 732px;
-    border-radius: 739px;
-    background: #1cac78;
-    right: -500px;
-    top: 735px;
-  }
-}
-
-.hero-video {
-  position: sticky;
+// Sticky Video Wrapper (for parallax scroll animation)
+.sticky-video-wrapper {
+  position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  pointer-events: none;  // Don't block clicks on content
+  z-index: 50;  // Below sticky-elements (z-index: 100)
+  overflow: visible;  // Allow video to move outside wrapper
 }
 
 .video-container {
@@ -195,6 +183,7 @@
   width: 100%;
   height: 100%;
   max-width: px(1400);
+  pointer-events: all;  // Re-enable clicks on video
 
   :deep(canvas) {
     width: 100%;
@@ -290,18 +279,18 @@
 }
 
 .slider-card {
+  @include glass-effect;
+  text-align: center;
   width: px(592);
   height: px(218);
   padding: var(--space-30) var(--space-32);
-  background: rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-16);
-  backdrop-filter: blur(25px);
   transition: all 0.3s ease-in-out;
 
   &__header {
     margin-bottom: var(--space-20);
 
-    h3 {
+    .slider-card__title {
       color: $green;
       margin: var(--space-16) 0 0 0;
     }
@@ -322,8 +311,7 @@
     .slider-card__header {
       margin-bottom: 0;
 
-      .text-label,
-      h3 {
+      .text-label {
         margin: 0;
       }
     }
@@ -332,5 +320,326 @@
     p {
       display: none;
     }
+  }
+}
+
+// About Section (Text only)
+.about-section {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: var(--space-80) var(--space-40) var(--space-40);
+  display: flex;
+  align-items: flex-start;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.about-text {
+  width: px(748);
+}
+
+// About Grid Section (Separate from text)
+.about-grid-section {
+  position: relative;
+  width: 100%;
+  padding: var(--space-32) var(--space-40) var(--space-200);
+  display: flex;
+  align-items: flex-start;
+}
+
+.about-grid {
+  width: px(904);
+  margin-left: auto;
+}
+
+// Feature Cards
+.feature-card {
+  @include glass-effect;
+  padding: var(--space-40);
+  border-radius: var(--radius-16);
+  height: px(272);
+
+  &__number {
+    font-size: inherit;
+    font-weight: inherit;
+    color: $green;
+  }
+
+  h4 {
+    margin: 0;
+    color: $black;
+  }
+}
+
+.parallax-section {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+
+  &__image-container {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    z-index: 0;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-40);
+  }
+
+  &__card--left {
+    flex-shrink: 0;
+  }
+
+  &__card--right {
+    flex-shrink: 0;
+  }
+
+  &__card--center {
+    flex-shrink: 0;
+  }
+}
+
+.stat-card {
+  @include glass-effect;
+  padding: var(--space-40);
+  border-radius: var(--radius-16);
+  width: px(592);
+  height: px(226);
+
+  &__value {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-16);
+  }
+
+  &__text {
+    display: inline;
+    color: $green !important;
+  }
+
+  &__description {
+    font-size: px(14);
+    line-height: 1.4;
+    color: $black;
+    margin: 0;
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: px(30);
+
+  &__icon {
+    transform: rotate(90deg);
+    color: $green;
+  }
+
+  &__text {
+    margin: 0;
+    color: $total-white;
+  }
+}
+
+.section-title-wrapper {
+  padding: var(--space-50) 0 0 var(--space-40);
+}
+
+.horizontal-section {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($dark-purple, 0.85);
+    z-index: 0;
+  }
+
+  &__gradient {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1000px);
+    z-index: 1;
+  }
+
+  &__gradient--purple {
+    width: px(1229);
+    height: px(1229);
+    background: #7a68ed;
+    left: px(-693);
+    top: px(-519);
+  }
+
+  &__gradient--green {
+    width: px(1109);
+    height: px(1109);
+    background: $green;
+    right: px(-533);
+    bottom: px(-914);
+  }
+
+  &__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  &__cube {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: px(734);
+    height: auto;
+    z-index: 1;
+  }
+
+  &__cube-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  &__cards {
+    position: absolute;
+    top: 50%;
+    left: var(--space-40);
+    display: flex;
+    gap: var(--space-40);
+    z-index: 2;
+  }
+
+  &__card {
+    flex-shrink: 0;
+  }
+}
+
+// Feature Card
+.feature-card {
+  @include glass-effect;
+  padding: var(--space-40);
+  border-radius: var(--radius-16);
+  height: px(272);
+
+  &__number {
+    font-size: inherit;
+    font-weight: inherit;
+    color: $green;
+  }
+
+  h4 {
+    margin: 0;
+    color: $black;
+  }
+}
+
+// Feature Company Card (для HorizontalSection)
+.feature-company-card {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(25px);
+  padding: var(--space-40);
+  border-radius: var(--radius-16);
+  height: px(370);
+  width: px(576);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__head {
+    display: flex;
+    align-items: start;
+    gap: var(--space-24);
+
+    h3,
+    h4 {
+      margin: 0;
+    }
+  }
+
+  &__description {
+    p {
+      margin: 0;
+      color: $total-white;
+    }
+  }
+}
+
+// Advantages Section
+.advantages-section {
+  position: relative;
+  width: 100%;
+  padding: var(--space-80) var(--space-40) var(--space-80);
+  background-color: $gray;
+  color: $total-black;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-100);
+
+  .section-title__text {
+    color: $total-black;
+  }
+}
+
+// Advantage Item
+.advantage-item {
+  padding: var(--space-60) 0;
+  border-bottom: 2px dotted rgba(0, 0, 0, 0.2);
+
+  &:first-child {
+    border-top: 2px dotted rgba(0, 0, 0, 0.2);
+  }
+
+  &__content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &__left {
+    display: flex;
+    gap: var(--space-20);
+    align-items: flex-start;
+  }
+
+  &__number {
+    margin: 0;
+  }
+
+  &__description-wrapper {
+    width: px(436);
+  }
+
+  &__description {
+    margin: 0;
   }
 }

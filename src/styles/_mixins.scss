@@ -20,3 +20,15 @@
     @content;
   }
 }
+
+// Grid Base Styles
+@mixin grid-base {
+  display: grid;
+  gap: var(--space-32);
+}
+
+// Glass Effect (белый фон 80% + backdrop-filter)
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(25px);
+}

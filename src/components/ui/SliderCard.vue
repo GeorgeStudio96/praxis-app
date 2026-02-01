@@ -1,21 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
 import NavigationButton from './NavigationButton.vue';
 
 interface Props {
   label: string;
   title: string;
   description: string;
-  isCompact?: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  isCompact: false,
-});
-
-const sliderCardRef = ref<HTMLDivElement>();
-
-const compactAttr = computed(() => (props.isCompact ? 'true' : 'false'));
+defineProps<Props>();
 
 function handlePrev() {
   alert('Prev clicked');
@@ -30,10 +22,12 @@ function handleNext() {
   <div class="slider-card-wrapper">
     <NavigationButton direction="left" @click="handlePrev" />
 
-    <div ref="sliderCardRef" class="slider-card" :data-compact="compactAttr">
+    <div class="slider-card">
       <div class="slider-card__header">
-        <p class="text-label">{{ label }}</p>
-        <h3>{{ title }}</h3>
+        <div class="col-10">
+          <p class="text-label">{{ label }}</p>
+          <h3 class="color-green">{{ title }}</h3>
+        </div>
       </div>
 
       <div class="slider-card__divider"></div>

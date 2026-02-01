@@ -7,26 +7,34 @@ import NavigationButton from '@/components/ui/NavigationButton.vue';
 import Header from '@/components/layout/Header.vue';
 import HeroSection from '@/components/sections/HeroSection.vue';
 import AboutSection from '@/components/sections/AboutSection.vue';
+import AboutGridSection from '@/components/sections/AboutGridSection.vue';
+import ParallaxSection from '@/components/sections/ParallaxSection.vue';
 import CompanyCard from '@/components/ui/CompanyCard.vue';
 import SliderCard from '@/components/ui/SliderCard.vue';
+import BackgroundGradients from '@/components/shared/BackgroundGradients.vue';
+import HorizontalSection from './components/sections/HorizontalSection.vue';
+import AdvantagesSection from './components/sections/AdvantagesSection.vue';
+import VideoSticky from '@/components/ui/VideoSticky.vue';
 
 const lenisOptions = {
-  duration: 1.2,
+  duration: 1.1,
   easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   smoothWheel: true,
+  wheelMultiplier: 1.5,
   syncTouch: false,
 };
 
 function swiperPrev() {
-  console.log('swiper prev clicked');
+  alert('swiper prev clicked');
 }
 function swiperNext() {
-  console.log('swiper next clicked');
+  alert('swiper next clicked');
 }
 </script>
 
 <template>
   <VueLenis root :options="lenisOptions">
+    <BackgroundGradients />
     <div class="root" id="app">
       <Header />
 
@@ -92,11 +100,12 @@ function swiperNext() {
         <NavigationButton @click="swiperNext" />
       </div>
 
-      <!-- Main Landing -->
+      <VideoSticky />
 
       <div class="sections-wrapper">
         <div class="hero-wrapper">
           <HeroSection />
+          <AboutSection />
 
           <div class="sticky-elements">
             <SliderCard
@@ -105,10 +114,14 @@ function swiperNext() {
               description="Централизация печати в организациях с помощью комплексного программного решения"
               class="slider-card--sticky"
             />
-            <CompanyCard href="https://praxis.company" company="PRAXIS" class="company-card--sticky" />
+            <CompanyCard href="" company="PRAXIS" class="company-card--sticky" />
           </div>
+
+          <AboutGridSection />
         </div>
-        <!-- <AboutSection /> -->
+        <ParallaxSection />
+        <HorizontalSection />
+        <AdvantagesSection />
       </div>
     </div>
   </VueLenis>

@@ -1,6 +1,5 @@
 @use './variables' as *;
-
-// Colors Classes
+@use './mixins' as *;
 
 // Text Colors
 .color-black {
@@ -24,6 +23,7 @@
 .color-total-black {
   color: $total-black;
 }
+
 // Background Colors
 .bg-black {
   background-color: $black;
@@ -48,14 +48,148 @@
 }
 
 // Layout
-
 .overflow-hidden {
   overflow: hidden;
+}
+
+.text-trim {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
 
 .row-space-between {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+}
+
+.row-align--top {
+  align-items: flex-start;
+}
+
+.row-align--bottom {
+  align-items: flex-end;
+}
+
+.col-space--between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Column Gap Utilities */
+.col-4 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.col-8 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.col-10 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.col-12 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.col-16 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.col-20 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.col-24 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+/* Row Gap Utilities */
+.row-4 {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-4);
+}
+
+.row-8 {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-8);
+}
+
+.row-12 {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-12);
+}
+
+.row-16 {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-16);
+}
+
+.row-20 {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-20);
+}
+
+.row-24 {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-24);
+}
+
+/* Grid Utilities */
+.grid-2 {
+  @include grid-base;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  @include grid-base;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  @include grid-base;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Grid Gaps */
+.gap-32 {
+  gap: var(--space-32);
+}
+
+/* Mobile Row Utilities */
+.mob-row--32 {
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+  }
+}
+
+/* Padding Utilities */
+.p-h--none {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }

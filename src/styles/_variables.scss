@@ -28,6 +28,7 @@ $total-black: #000000;
   --space-40: #{px(40)};
   --space-44: #{px(44)};
   --space-48: #{px(48)};
+  --space-50: #{px(50)};
   --space-52: #{px(52)};
   --space-56: #{px(56)};
   --space-60: #{px(60)};
@@ -36,6 +37,9 @@ $total-black: #000000;
   --space-72: #{px(72)};
   --space-76: #{px(76)};
   --space-80: #{px(80)};
+  --space-100: #{px(100)};
+  --space-150: #{px(150)};
+  --space-200: #{px(200)};
 
   @include mobile {
     --space-20: #{pxMob(18)};

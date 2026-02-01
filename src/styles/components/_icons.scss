@@ -65,6 +65,12 @@
   height: px(40);
 }
 
+.icon-container--44 {
+  @include icon-base;
+  width: px(44);
+  height: px(44);
+}
+
 .icon-container--48 {
   @include icon-base;
   width: px(48);

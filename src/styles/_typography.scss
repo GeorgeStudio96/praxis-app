@@ -107,3 +107,15 @@ p {
     line-height: pxMob(10);
   }
 }
+
+.h1--accent {
+  font-size: px(68);
+  line-height: px(76);
+  letter-spacing: -0.03em;
+  font-weight: 400;
+
+  @include mobile {
+    font-size: pxMob(32);
+    line-height: pxMob(33);
+  }
+}
