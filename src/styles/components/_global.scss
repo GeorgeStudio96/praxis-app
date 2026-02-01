@@ -153,6 +153,17 @@
 // Hero Wrapper with Sticky Elements
 .hero-wrapper {
   position: relative;
+
+  // БЛОК 1: Основной блок с видео, h1 и sticky элементами
+  &--main {
+    // Весь sticky контекст заканчивается здесь
+  }
+
+  // БЛОК 2: Изолированный блок с гридом
+  &--grid {
+    // Можно добавить gap между блоками если нужно
+    margin-top: 0;
+  }
 }
 
 // Hero Animations
@@ -165,17 +176,17 @@
 
 // Sticky Video Wrapper (for parallax scroll animation)
 .sticky-video-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: sticky;
+  top: 0; // Отклеивается на 30rem раньше конца секции
+  margin-top: -100vh;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;  // Don't block clicks on content
-  z-index: 50;  // Below sticky-elements (z-index: 100)
-  overflow: visible;  // Allow video to move outside wrapper
+  pointer-events: none; // Don't block clicks on content
+  z-index: 50; // Below sticky-elements (z-index: 100)
+  overflow: visible; // Allow video to move outside wrapper
 }
 
 .video-container {
@@ -183,7 +194,7 @@
   width: 100%;
   height: 100%;
   max-width: px(1400);
-  pointer-events: all;  // Re-enable clicks on video
+  pointer-events: all; // Re-enable clicks on video
 
   :deep(canvas) {
     width: 100%;

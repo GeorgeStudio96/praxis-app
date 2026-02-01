@@ -6,10 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const videoContainerRef = ref<HTMLElement | null>(null);
-const stickyWrapperRef = ref<HTMLElement | null>(null);
-
-let scrollTrigger: ScrollTrigger | null = null;
+let timeline: gsap.core.Timeline | null = null;
 let videoPlayer: any = null;
+let hasVideoPlayed = false; // Флаг для отслеживания проигрывания
 
 onMounted(function () {
   setTimeout(function () {
@@ -18,7 +17,7 @@ onMounted(function () {
 });
 
 onBeforeUnmount(function () {
-  if (scrollTrigger) scrollTrigger.kill();
+  if (timeline) timeline.kill();
 });
 
 function initVideo() {
@@ -39,33 +38,34 @@ function initVideo() {
 function initScrollAnimation(video: HTMLVideoElement) {
   if (!videoContainerRef.value) return;
 
-  // Триггер на весь hero-wrapper (HeroSection + AboutSection + AboutGridSection)
-  scrollTrigger = ScrollTrigger.create({
-    trigger: '.hero-wrapper',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: 0.5,
-    onUpdate: function (self) {
-      const progress = self.progress;
-
-      // Запуск видео
-      if (progress > 0.05 && video.paused) {
-        video.play();
-      }
-
-      // Анимация смещения от центра влево
-      // progress = 0: центр экрана (HeroSection)
-      // progress = 1: левая сторона слева от feature cards (AboutGridSection)
-      gsap.set(videoContainerRef.value, {
-        x: -35 * progress + 'vw',  // Смещение влево
-      });
+  // Создаем timeline для анимации
+  timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.hero-wrapper--main',
+      start: 'top top',
+      end: '40% top', // Анимация завершается когда центр блока достигает верха viewport
+      scrub: true,
+      markers: false,
+      onUpdate: function (self) {
+        // Запуск видео только один раз при достижении порога
+        if (!hasVideoPlayed && self.progress > 0.2 && video.paused) {
+          video.play();
+          hasVideoPlayed = true; // Помечаем, что видео уже проиграно
+        }
+      },
     },
+  });
+
+  // Добавляем анимацию смещения
+  timeline.to(videoContainerRef.value, {
+    x: '-30rem',
+    ease: 'none',
   });
 }
 </script>
 
 <template>
-  <div ref="stickyWrapperRef" class="sticky-video-wrapper">
+  <div class="sticky-video-wrapper">
     <div ref="videoContainerRef" class="video-container"></div>
   </div>
 </template>

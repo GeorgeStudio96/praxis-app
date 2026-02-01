@@ -23,13 +23,6 @@ const lenisOptions = {
   wheelMultiplier: 1.5,
   syncTouch: false,
 };
-
-function swiperPrev() {
-  alert('swiper prev clicked');
-}
-function swiperNext() {
-  alert('swiper next clicked');
-}
 </script>
 
 <template>
@@ -38,73 +31,10 @@ function swiperNext() {
     <div class="root" id="app">
       <Header />
 
-      <div v-if="false" class="ui-kit">
-        <h1>UI Kit</h1>
-
-        <h2>Large Button</h2>
-        <Button href="/news" outline="black">посмотреть все новости</Button>
-        <Button href="https://hh.ru" type="external" outline="white"
-          >Наши вакансии на <span class="color-green">hh.ru</span></Button
-        >
-        <Button type="internal" outline="black">посмотреть все новости</Button>
-
-        <h2>Up Button</h2>
-        <Button
-          size="medium"
-          variant="compact"
-          outline="black"
-          icon-position="right"
-          icon-color="#1cac78"
-          :icon-component="ArrowTop"
-        >
-          НАВЕРХ
-        </Button>
-        <Button
-          size="medium"
-          variant="compact"
-          outline="white"
-          icon-position="right"
-          icon-color="#1cac78"
-          :icon-component="ArrowTop"
-        >
-          НАВЕРХ
-        </Button>
-        <Button
-          size="medium"
-          variant="compact"
-          outline="green"
-          icon-position="right"
-          icon-color="#1cac78"
-          :icon-component="ArrowTop"
-        >
-          НАВЕРХ
-        </Button>
-
-        <h2>More button</h2>
-        <Button
-          size="medium"
-          variant="square"
-          outline="green"
-          :icon-component="IconPlus"
-          :show-text="false"
-        />
-        <Button
-          size="medium"
-          variant="square"
-          outline="white"
-          :icon-component="IconPlus"
-          :show-text="false"
-        />
-
-        <NavigationButton direction="left" @click="swiperPrev" />
-        <NavigationButton @click="swiperNext" />
-      </div>
-
-      <VideoSticky />
-
       <div class="sections-wrapper">
-        <div class="hero-wrapper">
+        <div class="hero-wrapper hero-wrapper--main">
           <HeroSection />
+          <VideoSticky />
           <AboutSection />
 
           <div class="sticky-elements">
@@ -116,9 +46,11 @@ function swiperNext() {
             />
             <CompanyCard href="" company="PRAXIS" class="company-card--sticky" />
           </div>
-
+        </div>
+        <div class="hero-wrapper hero-wrapper--grid">
           <AboutGridSection />
         </div>
+
         <ParallaxSection />
         <HorizontalSection />
         <AdvantagesSection />
