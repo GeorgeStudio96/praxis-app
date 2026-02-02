@@ -309,7 +309,8 @@
 }
 
 .sticky-elements {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   bottom: var(--space-40);
   display: flex;
   justify-content: flex-end;
@@ -411,9 +412,14 @@
   margin-left: auto;
 }
 
-.about-text {
+.about-text__wrapper {
   width: px(748);
-
+}
+.about-text__container {
+  width: px(904);
+  display: flex;
+  flex-direction: column;
+  gap: px(150);
   @include mobile {
     width: 100%;
   }

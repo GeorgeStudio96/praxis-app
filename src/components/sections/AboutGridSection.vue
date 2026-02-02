@@ -35,14 +35,12 @@ const features: Feature[] = [
 </script>
 
 <template>
-  <section class="about-grid-section">
-    <div class="about-grid">
-      <div class="grid-3">
-        <div v-for="feature in features" :key="feature.id" class="feature-card col-space--between">
-          <span class="feature-card__number">{{ feature.number }}</span>
-          <h4>{{ feature.description }}</h4>
-        </div>
+  <div class="about-grid">
+    <div class="grid-3">
+      <div v-for="feature in features" :key="feature.id" class="feature-card col-space--between">
+        <span class="feature-card__number">{{ feature.number }}</span>
+        <h4>{{ feature.description }}</h4>
       </div>
     </div>
-  </section>
+  </div>
 </template>

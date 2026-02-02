@@ -36,24 +36,21 @@ const lenisOptions = {
           <HeroSection />
           <VideoSticky />
           <AboutSection />
-
-          <div class="sticky-elements">
-            <SliderCard
-              label="ИННОВАЦИИ"
-              title="Управление корпоративной печатью"
-              description="Централизация печати в организациях с помощью комплексного программного решения"
-              class="slider-card--sticky"
-            />
-            <CompanyCard href="" company="PRAXIS" class="company-card--sticky" />
-          </div>
-        </div>
-        <div class="hero-wrapper hero-wrapper--grid">
-          <AboutGridSection />
         </div>
 
         <ParallaxSection />
         <HorizontalSection />
         <AdvantagesSection />
+
+        <div class="sticky-elements">
+          <SliderCard
+            label="ИННОВАЦИИ"
+            title="Управление корпоративной печатью"
+            description="Централизация печати в организациях с помощью комплексного программного решения"
+            class="slider-card--sticky"
+          />
+          <CompanyCard href="" company="PRAXIS" class="company-card--sticky" />
+        </div>
       </div>
     </div>
   </VueLenis>

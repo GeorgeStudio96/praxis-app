@@ -2,6 +2,7 @@
 import { onMounted, onBeforeUnmount, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import AboutGridSection from './AboutGridSection.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,12 +54,15 @@ onBeforeUnmount(() => {
 <template>
   <section ref="sectionRef" class="about-section">
     <div class="about-content">
-      <div class="about-text">
-        <h1 ref="titleRef">
-          Централизуем печать на предприятиях с помощью комплексного решения
-          <span class="color-green">Print-X</span> для сокращения затрат, повышения эффективности
-          и безопасности процессов
-        </h1>
+      <div class="about-text__container">
+        <div class="about-text__wrapper">
+          <h1 ref="titleRef">
+            Централизуем печать на предприятиях с помощью комплексного решения
+            <span class="color-green">Print-X</span> для сокращения затрат, повышения эффективности
+            и безопасности процессов
+          </h1>
+        </div>
+        <AboutGridSection />
       </div>
     </div>
   </section>
