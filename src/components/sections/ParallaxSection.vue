@@ -18,7 +18,7 @@ onMounted(() => {
 
   mm.add('(min-width: 768px)', () => {
     gsap.to(imageRef.value, {
-      yPercent: -10,
+      yPercent: -13,
       ease: 'none',
       scrollTrigger: {
         trigger: sectionRef.value,
@@ -31,25 +31,49 @@ onMounted(() => {
     if (cardsRef.value) {
       const cards = Array.from(cardsRef.value.children) as HTMLElement[];
 
-      if (cards.length >= 3) {
-        gsap.set(cards, { autoAlpha: 0, yPercent: 60 });
-
-        gsap.to(cards, {
-          autoAlpha: 1,
-          yPercent: (index) => (index === 1 ? 60 : -60),
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: sectionRef.value,
-            start: 'top bottom',
-            end: 'center center',
-            scrub: true,
+      if (cards.length >= 3 && cards[0] && cards[1] && cards[2]) {
+        gsap.fromTo(
+          [cards[0], cards[2]],
+          {
+            autoAlpha: 0,
+            y: 50,
           },
-        });
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: sectionRef.value,
+              start: 'center 60%',
+              markers: false,
+            },
+          }
+        );
+
+        gsap.fromTo(
+          cards[1],
+          {
+            autoAlpha: 0,
+            y: 50,
+          },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power2.out',
+            delay: 0.2,
+            scrollTrigger: {
+              trigger: sectionRef.value,
+              start: 'center 60%',
+              markers: false,
+            },
+          }
+        );
       }
     }
 
-    return () => {
-    };
+    return () => {};
   });
 
   return () => {
@@ -65,14 +89,20 @@ onMounted(() => {
     </div>
 
     <div ref="cardsRef" class="parallax-section__content">
-      <StatCard value="до 50" description="снижение расходов на печать" />
+      <div class="parallax-card--top">
+        <StatCard value="до 50" description="снижение расходов на печать" />
+      </div>
 
-      <StatCard
-        value="20—25"
-        description="экономия благодаря сокращению нецелевой печати и внедрению политик"
-      />
+      <div class="parallax-card--bot">
+        <StatCard
+          value="20—25"
+          description="экономия благодаря сокращению нецелевой печати и внедрению политик"
+        />
+      </div>
 
-      <StatCard value="10—15" description="снижение нагрузки на службу техподдержки" />
+      <div class="parallax-card--top">
+        <StatCard value="10—15" description="снижение нагрузки на службу техподдержки" />
+      </div>
     </div>
   </section>
 </template>

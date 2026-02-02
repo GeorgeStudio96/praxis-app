@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { VueLenis } from 'lenis/vue';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Button from '@/components/ui/Button.vue';
 import ArrowTop from '@/assets/icons/ArrowTop.vue';
 import IconPlus from '@/assets/icons/IconPlus.vue';
@@ -16,6 +19,8 @@ import HorizontalSection from './components/sections/HorizontalSection.vue';
 import AdvantagesSection from './components/sections/AdvantagesSection.vue';
 import VideoSticky from '@/components/ui/VideoSticky.vue';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const lenisOptions = {
   duration: 1.1,
   easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -23,6 +28,12 @@ const lenisOptions = {
   wheelMultiplier: 1.5,
   syncTouch: false,
 };
+
+onMounted(() => {
+  gsap.ticker.add(() => {
+    ScrollTrigger.update();
+  });
+});
 </script>
 
 <template>
@@ -46,7 +57,7 @@ const lenisOptions = {
           <SliderCard
             label="ИННОВАЦИИ"
             title="Управление корпоративной печатью"
-            description="Централизация печати в организациях с помощью комплексного программного решения"
+            description="Централизация печати в организациях с помощью комплексного программного решения"
             class="slider-card--sticky"
           />
           <CompanyCard href="" company="PRAXIS" class="company-card--sticky" />

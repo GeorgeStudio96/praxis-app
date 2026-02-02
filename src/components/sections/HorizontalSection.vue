@@ -60,6 +60,25 @@ const cards: Card[] = [
 onMounted(() => {
   if (!sectionRef.value || !cardsContainerRef.value) return;
 
+  const stickyElements = document.querySelector('.sticky-elements') as HTMLElement;
+
+  if (stickyElements) {
+    gsap.fromTo(
+      stickyElements,
+      { autoAlpha: 1 },
+      {
+        autoAlpha: 0,
+        duration: 0.5,
+        scrollTrigger: {
+          markers: false,
+          trigger: sectionRef.value,
+          start: '-50% top',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    );
+  }
+
   const mm = gsap.matchMedia();
 
   mm.add('(min-width: 768px)', () => {

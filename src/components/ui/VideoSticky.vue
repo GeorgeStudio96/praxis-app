@@ -64,7 +64,7 @@ function initScrollAnimation(video: HTMLVideoElement) {
   });
 
   timeline.to(videoContainerRef.value, {
-    x: '-30rem',
+    x: '-40rem',
     ease: 'none',
   });
 }
