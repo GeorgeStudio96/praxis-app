@@ -47,18 +47,34 @@
     padding: 0 var(--space-40);
     flex: 1;
   }
+
+  @include mobile {
+    height: pxMob(58);
+    min-width: 100%;
+
+    &__content {
+      gap: pxMob(48);
+    }
+  }
 }
 
 .header-divider {
   width: 1px;
   height: 100%;
   background: rgba(0, 0, 0, 0.1);
+  @include mobile {
+    display: none;
+  }
 }
 
 .language-switcher {
   padding: var(--space-36) var(--space-40);
   display: flex;
   gap: px(20);
+
+  @include mobile {
+    display: none;
+  }
 
   &__btn {
     background: none;
@@ -87,6 +103,10 @@
   background: transparent;
   cursor: pointer;
   padding: 0;
+  @include mobile {
+    min-width: pxMob(58);
+    min-height: pxMob(58);
+  }
 
   &__bg {
     position: absolute;
@@ -114,6 +134,9 @@
 
 .logo {
   width: px(120);
+  @include mobile {
+    width: pxMob(80);
+  }
 }
 
 .header-search {

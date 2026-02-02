@@ -69,6 +69,10 @@
   @include icon-base;
   width: px(40);
   height: px(40);
+  @include mobile {
+    width: pxMob(24);
+    height: pxMob(24);
+  }
 }
 
 .icon-container--44 {
