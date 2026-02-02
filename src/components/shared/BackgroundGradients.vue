@@ -9,7 +9,10 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
+@use '@/styles/functions' as *;
+@use '@/styles/mixins' as *;
+
 .background-gradients {
   position: fixed;
   top: 0;
@@ -33,6 +36,14 @@
   background: #7a68ed;
   left: -1150px;
   top: -600px;
+
+  @include mobile {
+    width: pxMob(345);
+    height: pxMob(345);
+    border-radius: pxMob(345);
+    top: pxMob(67);
+    left: pxMob(-301);
+  }
 }
 
 .background-gradient--green {
@@ -42,5 +53,13 @@
   background: #1cac78;
   right: -850px;
   bottom: -280px;
+
+  @include mobile {
+    width: pxMob(271);
+    height: pxMob(271);
+    border-radius: pxMob(271);
+    bottom: pxMob(60);
+    right: pxMob(-220);
+  }
 }
 </style>

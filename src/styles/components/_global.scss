@@ -154,14 +154,14 @@
 .hero-wrapper {
   position: relative;
 
-  // БЛОК 1: Основной блок с видео, h1 и sticky элементами
+  // БЛОК 1: Основной блок с видео и абсолютными элементами
   &--main {
-    // Весь sticky контекст заканчивается здесь
+    position: relative; // Контекст для абсолютного позиционирования
+    min-height: 100vh;
   }
 
   // БЛОК 2: Изолированный блок с гридом
   &--grid {
-    // Можно добавить gap между блоками если нужно
     margin-top: 0;
   }
 }
@@ -177,16 +177,23 @@
 // Sticky Video Wrapper (for parallax scroll animation)
 .sticky-video-wrapper {
   position: sticky;
-  top: 0; // Отклеивается на 30rem раньше конца секции
+  top: 0;
   margin-top: -100vh;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none; // Don't block clicks on content
-  z-index: 50; // Below sticky-elements (z-index: 100)
-  overflow: visible; // Allow video to move outside wrapper
+  pointer-events: none;
+  z-index: 50;
+  overflow: visible;
+
+  @include mobile {
+    position: static;
+    margin-top: 0;
+    height: auto;
+    padding: pxMob(12);
+  }
 }
 
 .video-container {
@@ -195,6 +202,12 @@
   height: 100%;
   max-width: px(1400);
   pointer-events: all; // Re-enable clicks on video
+
+  @include mobile {
+    width: 100%;
+    height: pxMob(312);
+    max-width: none;
+  }
 
   :deep(canvas) {
     width: 100%;
@@ -280,6 +293,13 @@
   gap: px(248);
   padding: 0 var(--space-40);
   z-index: 100;
+
+  @include mobile {
+    position: static;
+    flex-direction: column;
+    gap: pxMob(18);
+    padding: 0 pxMob(16);
+  }
 }
 
 // Slider Card
@@ -287,6 +307,18 @@
   display: flex;
   align-items: flex-end;
   gap: var(--space-32);
+
+  &--mobile {
+    flex-direction: column;
+    gap: pxMob(16);
+  }
+}
+
+.slider-card-navigation {
+  display: flex;
+  gap: pxMob(16);
+  width: 100%;
+  justify-content: center;
 }
 
 .slider-card {
@@ -297,6 +329,12 @@
   padding: var(--space-30) var(--space-32);
   border-radius: var(--radius-16);
   transition: all 0.3s ease-in-out;
+
+  @include mobile {
+    width: 100%;
+    height: auto;
+    padding: var(--space-40);
+  }
 
   &__header {
     margin-bottom: var(--space-20);

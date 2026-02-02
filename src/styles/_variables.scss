@@ -42,7 +42,9 @@ $total-black: #000000;
   --space-200: #{px(200)};
 
   @include mobile {
+    --space-10: #{pxMob(10)};
     --space-20: #{pxMob(18)};
+    --space-40: #{pxMob(18)};
   }
 }
 
@@ -50,6 +52,10 @@ $total-black: #000000;
 :root {
   --radius-8: #{px(8)};
   --radius-16: #{px(16)};
+
+  @include mobile {
+    --radius-16: #{pxMob(10)};
+  }
 }
 
 // Shadows

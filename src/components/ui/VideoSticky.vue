@@ -2,9 +2,11 @@
 import { onMounted, onBeforeUnmount, ref } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useBreakpoint } from '@/composables/useBreakpoint';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const { isMobile } = useBreakpoint();
 const videoContainerRef = ref<HTMLElement | null>(null);
 let timeline: gsap.core.Timeline | null = null;
 let videoPlayer: any = null;
@@ -26,13 +28,23 @@ function initVideo() {
   const Player = (window as any).TransparentVideoPlayer;
   videoPlayer = new Player(videoContainerRef.value);
 
-  videoPlayer.setSources(
-    '/videos/header_print_1.webm',
-    '/videos/header_print_4.mp4',
-    function (video: HTMLVideoElement) {
+  // Условно загружаем разные видео для мобайла и десктопа
+  const webmSource = isMobile.value
+    ? '/videos/mobile/I01_header_print_Mob_1.webm'
+    : '/videos/header_print_1.webm';
+  const mp4Source = isMobile.value
+    ? '/videos/mobile/I01_header_print_Mob_1.mp4'
+    : '/videos/header_print_4.mp4';
+
+  videoPlayer.setSources(webmSource, mp4Source, function (video: HTMLVideoElement) {
+    // Инициализируем scroll анимацию только на десктопе
+    if (!isMobile.value) {
       initScrollAnimation(video);
+    } else {
+      // На мобайле просто воспроизводим видео
+      video.play();
     }
-  );
+  });
 }
 
 function initScrollAnimation(video: HTMLVideoElement) {
@@ -43,14 +55,14 @@ function initScrollAnimation(video: HTMLVideoElement) {
     scrollTrigger: {
       trigger: '.hero-wrapper--main',
       start: 'top top',
-      end: '40% top', // Анимация завершается когда центр блока достигает верха viewport
+      end: '40% top',
       scrub: true,
       markers: false,
       onUpdate: function (self) {
         // Запуск видео только один раз при достижении порога
         if (!hasVideoPlayed && self.progress > 0.2 && video.paused) {
           video.play();
-          hasVideoPlayed = true; // Помечаем, что видео уже проиграно
+          hasVideoPlayed = true;
         }
       },
     },
