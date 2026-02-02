@@ -7,36 +7,45 @@ gsap.registerPlugin(ScrollTrigger);
 
 const sectionRef = ref<HTMLElement | null>(null);
 const titleRef = ref<HTMLElement | null>(null);
-let scrollTriggerInstance: ScrollTrigger | null = null;
+let mm: gsap.MatchMedia | null = null;
 
 onMounted(() => {
   if (!sectionRef.value || !titleRef.value) return;
 
-  // Начальное состояние - заголовок справа за пределами экрана
-  gsap.set(titleRef.value, {
-    x: '100%',
-    opacity: 0,
+  mm = gsap.matchMedia();
+
+  mm.add('(min-width: 769px)', () => {
+    gsap.set(titleRef.value, {
+      x: '100%',
+      opacity: 0,
+    });
+
+    ScrollTrigger.create({
+      trigger: sectionRef.value,
+      start: 'top 80%',
+      end: 'top 20%',
+      scrub: 0.5,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        gsap.set(titleRef.value, {
+          x: `${100 - progress * 100}%`,
+          opacity: progress,
+        });
+      },
+    });
   });
 
-  // Анимация выезда справа привязанная к скроллу
-  scrollTriggerInstance = ScrollTrigger.create({
-    trigger: sectionRef.value,
-    start: 'top 80%',
-    end: 'top 20%',
-    scrub: 0.5,
-    onUpdate: (self) => {
-      const progress = self.progress;
-      gsap.set(titleRef.value, {
-        x: `${100 - progress * 100}%`,
-        opacity: progress,
-      });
-    },
+  mm.add('(max-width: 768px)', () => {
+    gsap.set(titleRef.value, {
+      x: 0,
+      opacity: 1,
+    });
   });
 });
 
 onBeforeUnmount(() => {
-  if (scrollTriggerInstance) {
-    scrollTriggerInstance.kill();
+  if (mm) {
+    mm.kill();
   }
 });
 </script>

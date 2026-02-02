@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Fixed background gradients that appear throughout the entire site
 </script>
 
 <template>

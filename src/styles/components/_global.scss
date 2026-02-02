@@ -154,13 +154,11 @@
 .hero-wrapper {
   position: relative;
 
-  // БЛОК 1: Основной блок с видео и абсолютными элементами
   &--main {
-    position: relative; // Контекст для абсолютного позиционирования
+    position: relative;
     min-height: 100vh;
   }
 
-  // БЛОК 2: Изолированный блок с гридом
   &--grid {
     margin-top: 0;
   }
@@ -237,6 +235,10 @@
     width: px(96);
     height: auto;
     margin-bottom: auto;
+
+    @include mobile {
+      width: pxMob(60);
+    }
   }
 
   &__logo-image {
@@ -253,16 +255,7 @@
   }
 
   &__text {
-    flex: 1;
-  }
-
-  &__subtitle {
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    margin: 0;
-    padding: 0;
-    color: inherit;
+    width: 70%;
   }
 
   &__title {
@@ -276,6 +269,14 @@
   &__arrow {
     color: $total-white;
     flex-shrink: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .company-card {
+    width: 100%;
+    height: auto;
+    padding: var(--space-18);
   }
 }
 
@@ -352,7 +353,6 @@
     margin: var(--space-20) 0;
   }
 
-  // Компактный вид
   &[data-compact='true'] {
     height: px(64);
     padding: var(--space-20) var(--space-32);
@@ -390,6 +390,10 @@
 
 .about-text {
   width: px(748);
+
+  @include mobile {
+    width: 100%;
+  }
 }
 
 // About Grid Section (Separate from text)
@@ -399,11 +403,20 @@
   padding: var(--space-32) var(--space-40) var(--space-200);
   display: flex;
   align-items: flex-start;
+
+  @include mobile {
+    padding: pxMob(16);
+  }
 }
 
 .about-grid {
   width: px(904);
   margin-left: auto;
+
+  @include mobile {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 // Feature Cards
@@ -412,6 +425,11 @@
   padding: var(--space-40);
   border-radius: var(--radius-16);
   height: px(272);
+
+  @include mobile {
+    padding: var(--space-18);
+    height: pxMob(200) !important;
+  }
 
   &__number {
     font-size: inherit;
@@ -431,6 +449,12 @@
   height: 100dvh;
   overflow: hidden;
 
+  @include mobile {
+    height: auto;
+    padding: pxMob(256) 0 20px 0;
+    overflow: visible;
+  }
+
   &__image-container {
     position: absolute;
     top: -10%;
@@ -438,6 +462,15 @@
     width: 120%;
     height: 120%;
     z-index: 0;
+
+    @include mobile {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: pxMob(300);
+      z-index: 0;
+    }
   }
 
   &__image {
@@ -456,6 +489,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 var(--space-40);
+
+    @include mobile {
+      flex-direction: column;
+      height: auto;
+      padding: 0 pxMob(12);
+      gap: pxMob(12);
+      align-items: stretch;
+      justify-content: flex-start;
+    }
   }
 
   &__card--left {
@@ -478,6 +520,12 @@
   width: px(592);
   height: px(226);
 
+  @include mobile {
+    width: 100%;
+    height: pxMob(160);
+    padding: pxMob(20);
+  }
+
   &__value {
     display: flex;
     align-items: baseline;
@@ -494,6 +542,10 @@
     line-height: 1.4;
     color: $black;
     margin: 0;
+
+    @include mobile {
+      font-size: pxMob(12);
+    }
   }
 }
 
@@ -571,6 +623,11 @@
     width: px(734);
     height: auto;
     z-index: 1;
+
+    @include mobile {
+      width: pxMob(350);
+      height: auto;
+    }
   }
 
   &__cube-image {
@@ -586,33 +643,24 @@
     display: flex;
     gap: var(--space-40);
     z-index: 2;
+
+    @include mobile {
+      left: pxMob(12);
+      right: pxMob(12);
+      gap: pxMob(12);
+    }
   }
 
   &__card {
     flex-shrink: 0;
+
+    @include mobile {
+      height: pxMob(220) !important;
+    }
   }
 }
 
-// Feature Card
-.feature-card {
-  @include glass-effect;
-  padding: var(--space-40);
-  border-radius: var(--radius-16);
-  height: px(272);
-
-  &__number {
-    font-size: inherit;
-    font-weight: inherit;
-    color: $green;
-  }
-
-  h4 {
-    margin: 0;
-    color: $black;
-  }
-}
-
-// Feature Company Card (для HorizontalSection)
+// Feature Company Card (for HorizontalSection)
 .feature-company-card {
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(25px);
@@ -623,6 +671,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @include mobile {
+    width: pxMob(350);
+  }
 
   &__head {
     display: flex;
@@ -654,6 +706,11 @@
   flex-direction: column;
   gap: var(--space-100);
 
+  @include mobile {
+    padding: pxMob(40) pxMob(16) pxMob(40);
+    gap: pxMob(40);
+  }
+
   .section-title__text {
     color: $total-black;
   }
@@ -664,6 +721,10 @@
   padding: var(--space-60) 0;
   border-bottom: 2px dotted rgba(0, 0, 0, 0.2);
 
+  @include mobile {
+    padding: pxMob(24) 0;
+  }
+
   &:first-child {
     border-top: 2px dotted rgba(0, 0, 0, 0.2);
   }
@@ -672,6 +733,12 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: pxMob(18);
+    }
   }
 
   &__left {
@@ -686,6 +753,9 @@
 
   &__description-wrapper {
     width: px(436);
+    @include mobile {
+      width: 100%;
+    }
   }
 
   &__description {

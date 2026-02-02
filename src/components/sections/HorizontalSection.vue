@@ -60,72 +60,123 @@ const cards: Card[] = [
 onMounted(() => {
   if (!sectionRef.value || !cardsContainerRef.value) return;
 
-  const cardElements = Array.from(cardsContainerRef.value.children) as HTMLElement[];
+  const mm = gsap.matchMedia();
 
-  if (cardElements.length === 0) return;
+  mm.add('(min-width: 768px)', () => {
+    const cardElements = Array.from(cardsContainerRef.value!.children) as HTMLElement[];
 
-  const firstCard = cardElements[0];
-  if (!firstCard) return;
+    if (cardElements.length === 0) return;
 
-  const cardWidth = firstCard.offsetWidth;
-  const gap = 40;
-  const viewportWidth = window.innerWidth;
-  const initialOffset = viewportWidth / 2 - cardWidth / 2;
+    const firstCard = cardElements[0];
+    if (!firstCard) return;
 
-  gsap.set(cardsContainerRef.value, { x: initialOffset, yPercent: -50 });
-  gsap.set(cardElements, { autoAlpha: 0, scale: 0.8 });
-  gsap.set(firstCard, { autoAlpha: 1, scale: 1 });
+    const cardWidth = firstCard.offsetWidth;
+    const gap = 40;
+    const viewportWidth = window.innerWidth;
+    const initialOffset = viewportWidth / 2 - cardWidth / 2;
 
-  const scrollDistance = (cardWidth + gap) * (cardElements.length - 1);
+    gsap.set(cardsContainerRef.value, { x: initialOffset, yPercent: -50 });
+    gsap.set(cardElements, { autoAlpha: 0, scale: 0.8 });
+    gsap.set(firstCard, { autoAlpha: 1, scale: 1 });
 
-  scrollTriggerInstance.value = ScrollTrigger.create({
-    trigger: sectionRef.value,
-    start: 'top top',
-    end: () => `+=${scrollDistance * 1.5}`,
-    pin: true,
-    scrub: 1,
-    anticipatePin: 1,
-    onUpdate: (self) => {
-      const moveDistance = scrollDistance * self.progress;
-      gsap.to(cardsContainerRef.value, {
-        x: initialOffset - moveDistance,
-        duration: 0,
-      });
+    const scrollDistance = (cardWidth + gap) * (cardElements.length - 1);
 
-      cardElements.forEach((card, index) => {
-        const activePoint = index / (cardElements.length - 1);
-        const fadeInDuration = 0.22;
-        const fadeOutDuration = 0.15;
-        const appearStart = activePoint - fadeInDuration;
-        const disappearEnd = activePoint + fadeOutDuration;
-
-        let autoAlpha = 0;
-        let scale = 0.8;
-
-        if (self.progress < appearStart) {
-          autoAlpha = 0;
-          scale = 0.8;
-        } else if (self.progress >= appearStart && self.progress < activePoint) {
-          const t = (self.progress - appearStart) / fadeInDuration;
-          autoAlpha = t;
-          scale = 0.8 + t * 0.2;
-        } else if (self.progress >= activePoint && self.progress < disappearEnd) {
-          const t = (self.progress - activePoint) / fadeOutDuration;
-          autoAlpha = 1 - t;
-          scale = 1 - t * 0.2;
-        } else {
-          autoAlpha = 0;
-          scale = 0.8;
-        }
-
-        gsap.to(card, {
-          autoAlpha,
-          scale,
+    scrollTriggerInstance.value = ScrollTrigger.create({
+      trigger: sectionRef.value,
+      start: 'top top',
+      end: () => `+=${scrollDistance * 1.5}`,
+      pin: true,
+      scrub: 1,
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        const moveDistance = scrollDistance * self.progress;
+        gsap.to(cardsContainerRef.value, {
+          x: initialOffset - moveDistance,
           duration: 0,
         });
-      });
-    },
+
+        cardElements.forEach((card, index) => {
+          const activePoint = index / (cardElements.length - 1);
+          const fadeInDuration = 0.22;
+          const fadeOutDuration = 0.15;
+          const appearStart = activePoint - fadeInDuration;
+          const disappearEnd = activePoint + fadeOutDuration;
+
+          let autoAlpha = 0;
+          let scale = 0.8;
+
+          if (self.progress < appearStart) {
+            autoAlpha = 0;
+            scale = 0.8;
+          } else if (self.progress >= appearStart && self.progress < activePoint) {
+            const t = (self.progress - appearStart) / fadeInDuration;
+            autoAlpha = t;
+            scale = 0.8 + t * 0.2;
+          } else if (self.progress >= activePoint && self.progress < disappearEnd) {
+            const t = (self.progress - activePoint) / fadeOutDuration;
+            autoAlpha = 1 - t;
+            scale = 1 - t * 0.2;
+          } else {
+            autoAlpha = 0;
+            scale = 0.8;
+          }
+
+          gsap.to(card, {
+            autoAlpha,
+            scale,
+            duration: 0,
+          });
+        });
+      },
+    });
+
+    return () => {
+      if (scrollTriggerInstance.value) {
+        scrollTriggerInstance.value.kill();
+      }
+    };
   });
+
+  mm.add('(max-width: 767px)', () => {
+    const cardElements = Array.from(cardsContainerRef.value!.children) as HTMLElement[];
+
+    if (cardElements.length === 0) return;
+
+    const firstCard = cardElements[0];
+    if (!firstCard) return;
+
+    const cardWidth = firstCard.offsetWidth;
+    const gap = 12;
+    const scrollDistance = (cardWidth + gap) * (cardElements.length - 1);
+
+    gsap.set(cardsContainerRef.value, { x: 0, yPercent: -50 });
+    gsap.set(cardElements, { autoAlpha: 1, scale: 1 }); // All visible, no fade/scale
+
+    scrollTriggerInstance.value = ScrollTrigger.create({
+      trigger: sectionRef.value,
+      start: 'top top',
+      end: () => `+=${scrollDistance * 1.5}`,
+      pin: true,
+      scrub: 1,
+      onUpdate: (self) => {
+        const moveDistance = scrollDistance * self.progress;
+        gsap.to(cardsContainerRef.value, {
+          x: -moveDistance,
+          duration: 0,
+        });
+      },
+    });
+
+    return () => {
+      if (scrollTriggerInstance.value) {
+        scrollTriggerInstance.value.kill();
+      }
+    };
+  });
+
+  return () => {
+    mm.revert();
+  };
 });
 
 onBeforeUnmount(() => {

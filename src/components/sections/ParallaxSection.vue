@@ -14,37 +14,47 @@ const cardsRef = ref<HTMLElement | null>(null);
 onMounted(() => {
   if (!imageRef.value || !sectionRef.value) return;
 
-  gsap.to(imageRef.value, {
-    yPercent: -10,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: sectionRef.value,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true,
-    },
+  const mm = gsap.matchMedia();
+
+  mm.add('(min-width: 768px)', () => {
+    gsap.to(imageRef.value, {
+      yPercent: -10,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: sectionRef.value,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+
+    if (cardsRef.value) {
+      const cards = Array.from(cardsRef.value.children) as HTMLElement[];
+
+      if (cards.length >= 3) {
+        gsap.set(cards, { autoAlpha: 0, yPercent: 60 });
+
+        gsap.to(cards, {
+          autoAlpha: 1,
+          yPercent: (index) => (index === 1 ? 60 : -60),
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: sectionRef.value,
+            start: 'top bottom',
+            end: 'center center',
+            scrub: true,
+          },
+        });
+      }
+    }
+
+    return () => {
+    };
   });
 
-  // Animate cards
-  if (cardsRef.value) {
-    const cards = Array.from(cardsRef.value.children) as HTMLElement[];
-
-    if (cards.length >= 3) {
-      gsap.set(cards, { autoAlpha: 0, yPercent: 60 });
-
-      gsap.to(cards, {
-        autoAlpha: 1,
-        yPercent: (index) => (index === 1 ? 60 : -60),
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: sectionRef.value,
-          start: 'top bottom',
-          end: 'center center',
-          scrub: true,
-        },
-      });
-    }
-  }
+  return () => {
+    mm.revert();
+  };
 });
 </script>
 

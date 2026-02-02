@@ -10,7 +10,7 @@ const { isMobile } = useBreakpoint();
 const videoContainerRef = ref<HTMLElement | null>(null);
 let timeline: gsap.core.Timeline | null = null;
 let videoPlayer: any = null;
-let hasVideoPlayed = false; // Флаг для отслеживания проигрывания
+let hasVideoPlayed = false;
 
 onMounted(function () {
   setTimeout(function () {
@@ -28,7 +28,6 @@ function initVideo() {
   const Player = (window as any).TransparentVideoPlayer;
   videoPlayer = new Player(videoContainerRef.value);
 
-  // Условно загружаем разные видео для мобайла и десктопа
   const webmSource = isMobile.value
     ? '/videos/mobile/I01_header_print_Mob_1.webm'
     : '/videos/header_print_1.webm';
@@ -37,11 +36,9 @@ function initVideo() {
     : '/videos/header_print_4.mp4';
 
   videoPlayer.setSources(webmSource, mp4Source, function (video: HTMLVideoElement) {
-    // Инициализируем scroll анимацию только на десктопе
     if (!isMobile.value) {
       initScrollAnimation(video);
     } else {
-      // На мобайле просто воспроизводим видео
       video.play();
     }
   });
@@ -50,7 +47,6 @@ function initVideo() {
 function initScrollAnimation(video: HTMLVideoElement) {
   if (!videoContainerRef.value) return;
 
-  // Создаем timeline для анимации
   timeline = gsap.timeline({
     scrollTrigger: {
       trigger: '.hero-wrapper--main',
@@ -59,7 +55,6 @@ function initScrollAnimation(video: HTMLVideoElement) {
       scrub: true,
       markers: false,
       onUpdate: function (self) {
-        // Запуск видео только один раз при достижении порога
         if (!hasVideoPlayed && self.progress > 0.2 && video.paused) {
           video.play();
           hasVideoPlayed = true;
@@ -68,7 +63,6 @@ function initScrollAnimation(video: HTMLVideoElement) {
     },
   });
 
-  // Добавляем анимацию смещения
   timeline.to(videoContainerRef.value, {
     x: '-30rem',
     ease: 'none',

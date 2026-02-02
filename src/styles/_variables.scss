@@ -14,6 +14,7 @@ $total-black: #000000;
 :root {
   --space-4: #{px(4)};
   --space-8: #{px(8)};
+  --space-9: #{px(9)};
   --space-10: #{px(10)};
   --space-12: #{px(12)};
   --space-14: #{px(14)};
@@ -42,7 +43,9 @@ $total-black: #000000;
   --space-200: #{px(200)};
 
   @include mobile {
+    --space-9: #{pxMob(9)};
     --space-10: #{pxMob(10)};
+    --space-18: #{pxMob(18)};
     --space-20: #{pxMob(18)};
     --space-40: #{pxMob(18)};
   }

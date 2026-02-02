@@ -1,4 +1,5 @@
 @use '../functions' as *;
+@use '../mixins' as *;
 
 @mixin icon-base {
   display: inline-flex;
@@ -51,6 +52,11 @@
   @include icon-base;
   width: px(24);
   height: px(24);
+
+  @include mobile {
+    width: pxMob(24);
+    height: pxMob(24);
+  }
 }
 
 .icon-container--32 {
@@ -69,6 +75,11 @@
   @include icon-base;
   width: px(44);
   height: px(44);
+
+  @include mobile {
+    width: pxMob(24);
+    height: pxMob(24);
+  }
 }
 
 .icon-container--48 {

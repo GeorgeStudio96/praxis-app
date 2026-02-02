@@ -1,5 +1,6 @@
 @use '../variables' as *;
 @use '../_functions.scss' as *;
+@use '../_mixins.scss' as *;
 
 .btn {
   display: inline-flex;
@@ -101,6 +102,11 @@
   padding: 0;
   outline: none;
   transition: all 0.3s ease-in-out;
+
+  @include mobile {
+    width: 100%;
+    height: pxMob(50);
+  }
 
   &:hover {
     color: $green;

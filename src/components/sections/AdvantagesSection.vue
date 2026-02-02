@@ -50,10 +50,8 @@ onMounted(() => {
 
   if (items.length === 0) return;
 
-  // Устанавливаем начальное состояние
   gsap.set(items, { opacity: 0, y: 50 });
 
-  // Используем batch для анимации каждого элемента при его появлении
   ScrollTrigger.batch('.advantage-item', {
     onEnter: (batch) =>
       gsap.to(batch, {
